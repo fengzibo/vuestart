@@ -8,7 +8,7 @@
         "productId":"10001",
         "productName":"黄鹤楼香烟",
         "productPrice":19,
-        "productQuentity":1,
+        "productQuentity":2,
         "productImage":"img/goods-1.jpg",
         "parts":[
           {
@@ -25,7 +25,7 @@
         "productId":"10002",
         "productName":"加多宝",
         "productPrice":8,
-        "productQuentity":1,
+        "productQuentity":2,
         "productImage":"img/goods-2.jpg",
         "parts":[
           {
@@ -38,7 +38,7 @@
         "productId":"10003",
         "productName":"耳机",
         "productPrice":39,
-        "productQuentity":1,
+        "productQuentity":4,
         "productImage":"img/ear.jpeg",
         "parts":[]
       }
