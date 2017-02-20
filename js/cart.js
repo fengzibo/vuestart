@@ -6,7 +6,9 @@ var vm  = new Vue({
     data:{
         productList:[],
         totalMoney: 0,
-        checkAllFlag:false
+        checkAllFlag:false,
+        showFlag:false,
+        curindex: ''
     },
     filters:{
         formatMoney:function (val) {
@@ -23,7 +25,6 @@ var vm  = new Vue({
             var _this = this;
             this.$http.get("data/cart.json").then(function(res){
                 _this.productList = res.body.result.productList;
-                _this.totalMoney = res.body.result.totalMoney;
             });
         },
         changeMoney:function (productList,way) {
@@ -35,7 +36,7 @@ var vm  = new Vue({
                     productList.productQuentity = 1;
                 }
             }
-
+            this.caleMoney();
         },
         changeCheck:function (item) {
             if(typeof item.checked == 'undefined'){
@@ -44,6 +45,7 @@ var vm  = new Vue({
             }else {
                 item.checked = !item.checked;
             }
+            this.caleMoney();
         },
         checkAll:function (flag) {
             this.checkAllFlag = flag;
@@ -55,6 +57,26 @@ var vm  = new Vue({
                     item.checked = _this.checkAllFlag;
                 }
             })
+            this.caleMoney();
+        },
+        caleMoney:function () {
+            var _this = this;
+            _this.totalMoney = 0;
+            this.productList.forEach(function (item, index) {
+                if(item.checked){
+                    _this.totalMoney += item.productPrice *item.productQuentity;
+                }
+
+            })
+        },
+        delconfirm:function (item) {
+            this.showFlag=true;
+            this.curindex = item;
+        },
+        delproduct:function () {
+            var _index = this.productList.indexOf(this.curindex)
+            this.productList.splice(_index,1);
+            this.showFlag = false;
         }
     }
 });
